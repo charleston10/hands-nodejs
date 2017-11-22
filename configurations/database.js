@@ -9,8 +9,8 @@ Database.prototype.connect = function () {
 
     // Connect to mongodb
     var conn = function () {
-        var options = { server: { socketOptions: { keepAlive: 10 } } };
-        Mongoose.connect(connection, options);
+        var options = { useMongoClient: true, server: { socketOptions: { keepAlive: 10 } } };
+        Mongoose.connect(connection);
     };
 
     conn();

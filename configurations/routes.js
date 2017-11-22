@@ -1,6 +1,7 @@
 function ConfigRouter() {
-	var multer = require('multer');
-	var upload = multer({ dest: '/uploads' });
+	var multer = require('multer');;
+	var storage = multer.memoryStorage();
+	var upload = multer({ storage: storage });
 
 	const Express = require('express');
 

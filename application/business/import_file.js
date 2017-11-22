@@ -5,6 +5,7 @@ const InfoRepository = require('../repository/info');
 const Util = require('../util/util');
 const fs = require('fs');
 const csv = require('fast-csv');
+var stringDecoder = require('string_decoder').StringDecoder;
 
 class ImportFileBusiness extends BaseBusiness {
 
@@ -16,8 +17,8 @@ class ImportFileBusiness extends BaseBusiness {
 
         var importFile = this;
 
-        var stream = fs.createReadStream(req.file.path);
-        var registered = (req.body.registered) ? req.body.registered : false;
+        var decoder = new stringDecoder('utf8');
+        var CSV_STRING = decoder.write(req.file.buffer);  
 
         var countItems = 0;
         var countSuccess = 0;
@@ -31,7 +32,7 @@ class ImportFileBusiness extends BaseBusiness {
         var parseLocale = this._parseLatLog
 
         csv
-            .fromStream(stream, { headers: headersCsv })
+            .fromString(CSV_STRING, { headers: headersCsv })
             .on("data", function (data) {
 
                 var element = {}
