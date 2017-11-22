@@ -1,112 +1,58 @@
-# nautilus-orchestrator-api-nodejs
-Project with Orchestrator API - ECMA6 - Auto Generator Crud RESTFul
+# Hands API RESTful
 
-## How to use
+API criada para fornecer informações de cada aparelho celular e quais aplicativos instalados
 
-* Clone the project *
+## Projeto base 
+
 https://github.com/nautilustar/nautilustar-orchestrator-api-nodejs.git
 
-## Installation
+## Instalação
 
-**Install gulp**
-`npm install -g gulp-cli`
-
-**Install packages**
 `npm install`
 
-## Settings
-
-**Ceate route for 'users'**
-`gulp naut-create --file user --route users`
-
-**Parameters**
-
-    --file: file name 
-    
-    --route: route name
-
-**Last step - Setting your entity**
-
-Access the file `{project}/application/model/user.js`
-And put your fields
-
-Mongoose guide http://mongoosejs.com/docs/guide.html   
-
-    var mongoose = require('mongoose'),
-            Schema = mongoose.Schema;
-        
-    /**
-    * User Schema 
-    */
-    var UserSchema = new Schema({
-        user_name: {
-            type: String,
-            required: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true,
-        },
-        roles: {
-            type: String,
-            enum: ['admin', 'user'],
-            default: 'user'
-        },
-        created: {
-            type: Date,
-            default: Date.now
-        }
-    });
-    module.exports = mongoose.model('User', UserSchema);  
 
 ## API Requests
 
-//FIND ALL
+`IMPORTS`
 
-    GET /v1/users
+    POST /v1/imports
+    Host: localhost:3000
+    Cache-Control: no-cache
+    Content-Type: multipart/form-data
+    Form: file - list_import.csv
+
+`FIND ALL`
+
+    GET /v1/info
     Host: localhost:3000
     Cache-Control: no-cache
 
-//FIND BY ID
+`FIND BY ID`
 
-    GET /v1/users/{ID}
+    GET /v1/info/{ID}
     Host: localhost:3000
     Cache-Control: no-cache
 
-//SAVE
+`SAVE`
 
-    POST /v1/users
+    POST /v1/info
+    Host: localhost:3000
+    Content-Type: application/json    
+
+`UPDATE`
+
+    PUT /v1/info/{ID}
     Host: localhost:3000
     Content-Type: application/json
-    Cache-Control: no-cache
-    {
-    	"user_name":"NautilusStar",
-    	"password":"1234",
-    	"email":"email@email.com"
-    }
 
-//UPDATE
+`DELETE`
 
-    PUT /v1/users/{ID}
-    Host: localhost:3000
-    Content-Type: application/json
-    {
-    	"user_name":"StarNautilus",
-    	"password":"4321",
-    	"email":"email@email.com"
-    }
-
-//DELETE
-
-    DELETE /v1/users/{ID}
+    DELETE /v1/info/{ID}
     Host: localhost:3000
     Cache-Control: no-cache
 
-### Structure
+### Estrutura Base
+
 /**application**
 - - -/business
 - - -/filters
